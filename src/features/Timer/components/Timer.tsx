@@ -27,7 +27,7 @@ export const Timer = () => {
             </button>{" "}
           </>
         ) : (
-          <div className=" w-full flex gap-2 flex-wrap justify-around">
+          <div className=" w-full flex gap-2 flex-wrap justify-center">
             <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">Add 1 Minute</button>
             <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">Add 5 Minute</button>
             <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">Add 10 Minute</button>
