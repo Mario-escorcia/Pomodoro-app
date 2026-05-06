@@ -7,6 +7,10 @@ export const Timer = () => {
   const seconds = useTimerStore((state) => state.seconds);
   const isEditing = useTimerStore((state) => state.editingTimer);
   const changeTimerEdition = useTimerStore((state) => state.changeTimerEdition);
+  const recalculateTimer = useTimerStore((state)=> state.calculateTimer)
+  const startTimer = useTimerStore((state) => state.startTimer);
+   const excutingTimer = useTimerStore((state) => state.excecuting);
+   const stopTimer = useTimerStore((state)=> state.stopTimer)
 
   return (
     <section className=" flex-1 w-full flex flex-col items-center justify-center gap-6">
@@ -16,8 +20,16 @@ export const Timer = () => {
       <div className="flex gap-4 flex-wrap">
         {!isEditing ? (
           <>
-            <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">
-              Start
+            <button
+            onClick={()=>{
+              if (excutingTimer) {
+                stopTimer()
+              }else{
+                startTimer()
+              }
+            }} 
+            className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">
+              {excutingTimer ? 'Stop' : 'Start'}
             </button>
             <button
               onClick={changeTimerEdition}
