@@ -1,52 +1,66 @@
 "use client";
 
+import Image from "next/image";
 import { useTimerStore } from "../stores/TimerStore";
-
+import tokiAss from "../stores/ZIP1ugJ5.webp";
 export const Timer = () => {
   const minutes = useTimerStore((state) => state.minutes);
   const seconds = useTimerStore((state) => state.seconds);
   const isEditing = useTimerStore((state) => state.editingTimer);
   const changeTimerEdition = useTimerStore((state) => state.changeTimerEdition);
-  const recalculateTimer = useTimerStore((state)=> state.calculateTimer)
+  const recalculateTimer = useTimerStore((state) => state.calculateTimer);
   const startTimer = useTimerStore((state) => state.startTimer);
-   const excutingTimer = useTimerStore((state) => state.excecuting);
-   const stopTimer = useTimerStore((state)=> state.stopTimer)
+  const excutingTimer = useTimerStore((state) => state.excecuting);
+  const stopTimer = useTimerStore((state) => state.stopTimer);
 
   return (
     <section className=" flex-1 w-full flex flex-col items-center justify-center gap-6">
+      {minutes == 0 && seconds == 0 && (<Image src={tokiAss} alt="Las nalgas de toki" priority  className="object-cover w-60"></Image>)}
       <div className=" w-70 h-70 rounded-full border-2 border-white flex items-center justify-center text-6xl text-white">
         {minutes}:{String(seconds).padStart(2, "0")}
       </div>
-      <div className="flex gap-4 flex-wrap">
-        {!isEditing ? (
-          <>
-            <button
-            onClick={()=>{
-              if (excutingTimer) {
-                stopTimer()
-              }else{
-                startTimer()
-              }
-            }} 
-            className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">
-              {excutingTimer ? 'Stop' : 'Start'}
-            </button>
-            <button
-              onClick={changeTimerEdition}
-              className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm"
-            >
-              Edit Time duration
-            </button>{" "}
-          </>
-        ) : (
-          <div className=" w-full flex gap-2 flex-wrap justify-center">
-            <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">Add 1 Minute</button>
-            <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">Add 5 Minute</button>
-            <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">Add 10 Minute</button>
-            <input type="number" placeholder="Add custom time" className=" no-spin border border-white w-40 rounded-lg h-8 text-white  text-sm text-right px-4"/>
-          </div>
-        )}
-      </div>
+        <div className="flex gap-4 flex-wrap">
+          {!isEditing ? (
+            <>
+              <button
+                onClick={() => {
+                  if (excutingTimer) {
+                    stopTimer();
+                  } else {
+                    startTimer();
+                  }
+                }}
+                className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm"
+              >
+                {excutingTimer ? "Stop" : "Start"}
+              </button>
+              <button
+                onClick={changeTimerEdition}
+                className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm"
+              >
+                Edit Time duration
+              </button>{" "}
+            </>
+          ) : (
+            <div className=" w-full flex gap-2 flex-wrap justify-center">
+              <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">
+                Add 1 Minute
+              </button>
+              <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">
+                Add 5 Minute
+              </button>
+              <button className="border border-white w-40 rounded-lg h-8 cursor-pointer text-white hover:bg-white hover:text-black transition-colors text-sm">
+                Add 10 Minute
+              </button>
+              <input
+                type="number"
+                placeholder="Add custom time"
+                className=" no-spin border border-white w-40 rounded-lg h-8 text-white  text-sm text-right px-4"
+              />
+            </div>
+          )}
+        </div>
+      
     </section>
   );
 };

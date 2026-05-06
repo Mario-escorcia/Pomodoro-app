@@ -2,8 +2,8 @@ import { create } from "zustand";
 import { TimerStoreType } from "../types/TimerStoreTypes";
 
 export const useTimerStore = create<TimerStoreType>((set, get) => ({
-  minutes: 1,
-  seconds: 0,
+  minutes: 0,
+  seconds: 10,
   editingTimer: false,
   timerId: null,
   excecuting: false,
