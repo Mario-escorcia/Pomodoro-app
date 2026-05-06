@@ -15,7 +15,6 @@ export const Timer = () => {
 
   return (
     <section className=" flex-1 w-full flex flex-col items-center justify-center gap-6">
-      {minutes == 0 && seconds == 0 && (<Image src={tokiAss} alt="Las nalgas de toki" priority  className="object-cover w-60"></Image>)}
       <div className=" w-70 h-70 rounded-full border-2 border-white flex items-center justify-center text-6xl text-white">
         {minutes}:{String(seconds).padStart(2, "0")}
       </div>
